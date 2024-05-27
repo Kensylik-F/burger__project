@@ -1,0 +1,19 @@
+.Rolls__WrapperIngredietns{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+}
+.Item__Rolls{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.BurgerIngredients{
+    height: 100vh;
+}
+.Ingredients__wrapper{
+    overflow: scroll;
+    
+}
+

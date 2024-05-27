@@ -1,0 +1,16 @@
+.Rolls__WrapperIngredietns{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    
+}
+.Souse__WrapperIngredietns{
+    composes: Rolls__WrapperIngredietns;
+}
+
+.Ingredients__wrapper{
+    max-height: 756px;
+    overflow: scroll;
+    overflow-x: hidden;
+
+}
