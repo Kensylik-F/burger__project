@@ -1,4 +1,6 @@
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import constructorItem from './constructor-item.module.css';
+import PropTypes from 'prop-types';
 
 export default function ConstructorItem({data}) { 
 
@@ -16,10 +18,11 @@ export default function ConstructorItem({data}) {
     console.log(bun)
     return(
     
-        <ul className='constructor__wrapper '>
+        <ul className={`${constructorItem.wrapper_constructorBun}`}>
             {   
             bun && <li className='ml-8'>  
                 <ConstructorElement  
+                    key={bun._id}
                     type="top"    
                     isLocked={true} 
                     text={`${bun.name} (вверх)`} 
@@ -30,16 +33,16 @@ export default function ConstructorItem({data}) {
 
 
         }
-            <ul  className='Main__block-constructor 'style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <ul  className={`${constructorItem.wrapper_constructor} `}>
 
                 {filling.map(item => 
 
-                    <span  style={{display: 'flex', gap:'10px', flexGrow:'1'}}>
+                    <span className={`${constructorItem.item} `} >
                         <DragIcon  type="primary"/>
                         
                         <ConstructorElement 
-                            className='item-constructor pl-10' 
                             key={item._id} 
+                            className='item-constructor pl-10' 
                             text={item.name} 
                             price={item.price} 
                             thumbnail={item.image_large}/> 
@@ -48,6 +51,7 @@ export default function ConstructorItem({data}) {
             </ul>
             <li className='ml-8'>{
                 bun && <ConstructorElement 
+                    key={bun._id}
                     type="bottom"
                     isLocked={true}
                     text={`${bun.name} (низ)`}
@@ -61,4 +65,20 @@ export default function ConstructorItem({data}) {
     )
     
 } 
-
+ConstructorItem.propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        proteins: PropTypes.number.isRequired,
+        fat: PropTypes.number.isRequired,
+        carbohydrates: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        image_mobile: PropTypes.string.isRequired,
+        image_large: PropTypes.string.isRequired,
+        __v: PropTypes.number.isRequired,
+      })
+  )}

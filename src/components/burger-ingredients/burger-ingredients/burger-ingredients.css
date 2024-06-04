@@ -16,4 +16,7 @@
     overflow: scroll;
     
 }
+.navIngredients{
+    display: flex;
+}
 

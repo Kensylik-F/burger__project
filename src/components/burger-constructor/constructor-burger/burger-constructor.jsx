@@ -1,11 +1,11 @@
-import './burgerConstructor.css';
+import './burger-constructor.css';
 // import constructor from './burger-constructor.module.css';
 import { ConstructorElement,CurrencyIcon,Button,DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { useState,useEffect } from 'react';
 import PropTypes from "prop-types";
 import OrderDetails from "../../modal/order-details/OrderDetails";
-import ConstructorItem from '../constructor-item/constructorItem';
+import ConstructorItem from '../constructor-item/constructor-item';
 import Modal from '../../modal/modal/modal';
 
 function BurgerConstructor({data}){
@@ -19,8 +19,9 @@ function BurgerConstructor({data}){
     const orderHandleClick = () =>{
         setModalOpen(!modalOpen);
     };
+
     const handleKeyDown = (event) => {
-        if (event.keyCode === 27) {
+        if (event.key === 'Escape') {
           onClose();
         }
       };
@@ -42,7 +43,7 @@ function BurgerConstructor({data}){
             <div className="constructor__footer pt-10">
                 <div className="constructor__price-total pr-10">
                     <p className="text text_type_digits-medium pr-2">600</p>
-                    <CurrencyIcon type="primary"style={{width:'50px', height: '50px'}}/>
+                    <CurrencyIcon type="primary" className='icon-burger'/>
                 </div>
                 <div className="constructor__button" >
                     <Button onClick={()=> orderHandleClick()} htmlType="button" type="primary" size="large">
@@ -51,7 +52,7 @@ function BurgerConstructor({data}){
                 </div>
             </div>
 
-            <Modal modalOpen={modalOpen} onClose={onClose}>
+            <Modal modalOpen={modalOpen} onClose={onClose} >
                 <OrderDetails/>
             </Modal>
                 
@@ -68,18 +69,23 @@ function BurgerConstructor({data}){
     )
 }
 
-BurgerConstructor.propTypes ={
-    ConstructorItem: PropTypes.shape({
-        
-        image: PropTypes.string.isRequired,
+
+ConstructorItem.propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        proteins: PropTypes.number.isRequired,
+        fat: PropTypes.number.isRequired,
+        carbohydrates: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired
-    }).isRequired
-};
-ConstructorItem.defaultProps ={
-    thumbnail: '...',
-    price: '???',
-    text: '⍑ᒷꖎꖎ𝙹𝙹 ᓭꖌ𝙹∷𝙹  ʖ⚍↸ᒷℸ ̣',
-}
+        image: PropTypes.string.isRequired,
+        image_mobile: PropTypes.string.isRequired,
+        image_large: PropTypes.string.isRequired,
+        __v: PropTypes.number.isRequired,
+      })
+  )}
 
 export default BurgerConstructor;

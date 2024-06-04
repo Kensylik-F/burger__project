@@ -3,12 +3,12 @@ import ModalStyle from './../modal/modal.module.css';
 import ModalOverlay from "../modal-overlay/modalOverlay";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
-
+import PropTypes from "prop-types";
 const element = document.querySelector('#modal')
 
 export default function Modal({modalOpen, onClose, children}){
-
     
+
     if(modalOpen){
         return createPortal(
             <div className={ModalStyle.modal} >
@@ -29,3 +29,9 @@ export default function Modal({modalOpen, onClose, children}){
     }
     return null
 }
+Modal.propTypes = {
+    modalOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    children: PropTypes.node
+    
+    }

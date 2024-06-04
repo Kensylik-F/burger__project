@@ -3,10 +3,11 @@ import React, { useState, useEffect, useMemo } from "react";
 import '../app/styles/reset.css'
 import '../app/styles/Main.css'
 import BurgerMain from "../app/styles/app.module.css";
+import PropTypes from 'prop-types';
 
-import Header from "../appHeader/header";
-import BurgerIngredients from "../burgerIngredients/burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burgerConstructor/constructor-burger/burgerConstructor";
+import Header from "../app-header/header";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients/burger-ingredients";
+import BurgerConstructor from "../burger-constructor/constructor-burger/burger-constructor";
 import Modal from "../modal/modal/modal";
 const URL = "https://norma.nomoreparties.space/api/ingredients";
 
@@ -19,15 +20,21 @@ function App() {
     setIsLoading(true);
     try {
       fetch(url)
-      .then(response => response.json())
+      .then(res => {  
+        if (res.ok) {  
+            return res.json();  
+        }  
+        return Promise.reject(`Ошибка ${res.status}`);  
+    })  
       .then(data => {
         setData(data.data);
-        setIsLoading(false);
       })
       .catch (error => {
         console.error(`Ошибка загрузки ингредиентов: ${error}`);
-        setIsLoading(false)
         setError(error);
+      })
+      .finally(()=>{
+        setIsLoading(false);
       })
     } 
     catch (error) {
@@ -67,6 +74,22 @@ function App() {
     );
 
   }
-  
+  // App.propTypes = {
+  //   data: PropTypes.arrayOf(
+  //     PropTypes.shape({
+  //       _id: PropTypes.string.isRequired,
+  //       name: PropTypes.string.isRequired,
+  //       type: PropTypes.string.isRequired,
+  //       proteins: PropTypes.number.isRequired,
+  //       fat: PropTypes.number.isRequired,
+  //       carbohydrates: PropTypes.number.isRequired,
+  //       calories: PropTypes.number.isRequired,
+  //       price: PropTypes.number.isRequired,
+  //       image: PropTypes.string.isRequired,
+  //       image_mobile: PropTypes.string.isRequired,
+  //       image_large: PropTypes.string.isRequired,
+  //       __v: PropTypes.number.isRequired,
+  //     })
+  // )}
   export default App;
   
