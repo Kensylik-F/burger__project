@@ -1,0 +1,15 @@
+
+
+.container  {
+    max-width: 1270px;
+    margin: 0 auto;
+    padding: 0 40px;
+    
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px   ;
+    
+}

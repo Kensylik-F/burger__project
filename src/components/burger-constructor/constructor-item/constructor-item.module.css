@@ -1,0 +1,24 @@
+.wrapper_constructorBun{
+    height: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px   ;
+    
+    
+}
+
+
+.wrapper_constructor{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.item{
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
