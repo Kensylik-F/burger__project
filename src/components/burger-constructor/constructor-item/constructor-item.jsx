@@ -1,7 +1,7 @@
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import constructorItem from './constructor-item.module.css';
 import PropTypes from 'prop-types';
-
+import ingredientType from "../../utils/types";
 export default function ConstructorItem({data}) { 
 
 
@@ -13,9 +13,6 @@ export default function ConstructorItem({data}) {
     const bun = data.filter(function(e){
         return e.type === "bun"
     })[0];
-
-    console.log(filling)
-    console.log(bun)
     return(
     
         <ul className={`${constructorItem.wrapper_constructorBun}`}>
@@ -66,19 +63,5 @@ export default function ConstructorItem({data}) {
     
 } 
 ConstructorItem.propTypes = {
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-        calories: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-        image_large: PropTypes.string.isRequired,
-        __v: PropTypes.number.isRequired,
-      })
-  )}
+    data: ingredientType
+}

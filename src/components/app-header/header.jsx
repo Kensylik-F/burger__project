@@ -1,6 +1,6 @@
 
-// import header from './header.module.css';
-import './header.css';
+import header from './header.module.css';
+
 import { Logo,BurgerIcon,ListIcon,ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
@@ -8,22 +8,22 @@ import { Logo,BurgerIcon,ListIcon,ProfileIcon } from '@ya.praktikum/react-develo
 
 function Header() {
     return(
-        <header className="header p-4">
-            <div className="container">
-                <div  className="Logo">
+        <header className={`${header.header} p-4`}>
+            <div className={`${header.container}`}>
+                <div  className={`${header.Logo}`}>
                     <Logo/>
                 </div>
                 
-                <nav className="nav">
-                    <div className="nav__list">
-                        <button className="nav__list_item pr-5 pl-5 pb-4 pt-4">
+                <nav className={`${header.nav}`}>
+                    <div className={`${header.nav__list}`}>
+                        <button className={`${header.nav__list_item} pr-5 pl-5 pb-4 pt-4`}>
                             <BurgerIcon type="primary" />
                             <p className="text text_type_main-default">
                                 Конструтор
                             </p>
                         </button>
                        
-                        <button className="nav__list_item pr-5 pl-5 pb-4 pt-4">
+                        <button className={`${header.nav__list_item} pr-5 pl-5 pb-4 pt-4`}>
                            <ListIcon type="secondary" />
                             <p className="text text_type_main-default text_color_inactive">
                                 Лента заказов
@@ -31,7 +31,7 @@ function Header() {
                         </button>
                         
                     </div>
-                    <button className=' nav__list_item pr-5 pl-5 pb-4 pt-4'>
+                    <button className={`${header.nav__list_item} pr-5 pl-5 pb-4 pt-4`}>
                         <ProfileIcon type="secondary" />
                         <p className="text text_type_main-default text_color_inactive">
                             Личный кабинет

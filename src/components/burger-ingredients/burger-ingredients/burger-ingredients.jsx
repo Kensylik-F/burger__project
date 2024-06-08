@@ -1,14 +1,14 @@
-import React, {useState, useEffect, useRef, useCallback, useMemo} from "react";
+import React, {useState, useEffect, useRef, useCallback, useMemo, memo} from "react";
 import PropTypes from "prop-types";
 import burger from './burger-ingredients.module.css';
 
-import './burger-ingredients.css';
+// import './burger-ingredients.css';
 import IngredientCotigary from "../cotigary-ingredients/ingredietns-cotigary";
 import { Tab,} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../../modal/modal/modal";
 import IngredientsDetails from "../../modal/ingredients-details/ingredietns-details";
-
-function BurgerIngredients({data}){
+import ingredientType from "../../utils/types";
+const BurgerIngredients = memo(({data}) => {
     const [current, setCurrent] = React.useState('Булки');
 
     const bunIngredients = useCallback(data.filter(function(e){
@@ -32,24 +32,12 @@ function BurgerIngredients({data}){
     
     });
    
-    const handleKeyDown = (event) => {
-        if (event.key === 'Escape') {
-          onClose();
-        }
-      };
     
-      useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown, false);
-    
-        return () => {
-          document.removeEventListener('keydown', handleKeyDown, false);
-        };
-      }, []);
     return(
-        <section className='BurgerIngredients pb-10 '>
+        <section className={`${burger.BurgerIngredients} pb-10`}>
 
             <h1 className="text text_type_main-large pb-5 pt-10">Соберите бургер</h1>
-            <div className="navIngredients">
+            <div className={`${burger.navIngredients}`}>
                 <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
                     <p>Булки</p>
                 </Tab>
@@ -87,24 +75,10 @@ function BurgerIngredients({data}){
     )
 
     
-}
+})
 
 IngredientCotigary.propTypes = {
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-        calories: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-        image_large: PropTypes.string.isRequired,
-        __v: PropTypes.number.isRequired,
-      })
-  )}
+    data: ingredientType
+}
 
 export default BurgerIngredients;

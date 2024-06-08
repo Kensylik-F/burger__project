@@ -1,3 +1,9 @@
+.BurgerIngredients{
+    height: 100vh;
+}
+.navIngredients{
+    display: flex;
+}
 .Rolls__WrapperIngredietns{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -5,6 +11,9 @@
     
 }
 .Souse__WrapperIngredietns{
+    composes: Rolls__WrapperIngredietns;
+}
+.Main__WrapperIngredietns{
     composes: Rolls__WrapperIngredietns;
 }
 
